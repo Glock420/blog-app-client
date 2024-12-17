@@ -1,15 +1,17 @@
 import { useState, useEffect, useContext } from 'react';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import UserContext from '../context/UserContext';
+
+import AddPost from '../components/AddPost';
 
 export default function Posts() {
 	const { user } = useContext(UserContext);
 
 	const [posts, setPosts] = useState([]);
 
-	useEffect(() => {
+	const fetchPosts = () => {
 		fetch(`http://localhost:4000/posts/getPosts`)
 		.then(response => response.json())
 		.then(data => {
@@ -18,13 +20,27 @@ export default function Posts() {
 			} else {
 				setPosts([]);
 			}
-		})
+		});
+	}
+
+	useEffect(() => {
+		fetchPosts();
 	}, [user]);
 
 	return(
 		<>
-            <h1 className="my-5">Blog Posts</h1>
-            <Row className="d-flex mx-auto my-5 px-5">
+            <h1 className="my-5 text-center">Blog Posts</h1>
+            <Row className="d-flex justify-content-center">
+            	<Col className="col-12 d-flex">
+            		{(user.id !== null) ?
+            			<AddPost fetchPosts={fetchPosts} />
+            		:
+            			null
+            		}
+            	</Col>
+            </Row>
+            <hr />
+            <Row className="d-flex mx-auto mb-5 px-5">
                 {(posts.length > 0) ?
                     posts.map(post => {
                         return(

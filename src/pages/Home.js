@@ -14,7 +14,7 @@ export default function Home() {
                 <p>Letting people speak their minds since 1000 AD</p>
                 {(user.id !== null)
                     ?
-                        <Link className="btn btn-primary" to={"/movies"}>View Blog Posts</Link>
+                        <Link className="btn btn-primary" to={"/posts"}>View Blog Posts</Link>
                     :
                         <Link className="btn btn-primary" to={"/login"}>Login</Link>
 
