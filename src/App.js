@@ -10,6 +10,8 @@ import AppNavBar from './components/AppNavBar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Posts from './pages/Posts';
+import PostDetails from './pages/PostDetails';
 import Logout from './pages/Logout';
 
 function App() {
@@ -65,6 +67,8 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/posts" element={<Posts />} />
+                <Route path="/posts/details/:postId" element={<PostDetails />} />
                 <Route path="/logout" element={<Logout />} />
               </Routes>
             </Container>
