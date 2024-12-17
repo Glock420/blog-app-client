@@ -5,6 +5,7 @@ import { Navigate, useParams, useNavigate, Link } from 'react-router-dom';
 import UserContext from '../context/UserContext';
 
 import DeleteBlog from '../components/DeleteBlog';
+import UpdateBlog from '../components/UpdateBlog';
 
 import { Notyf } from 'notyf';
 
@@ -17,26 +18,22 @@ export default function PostDetails() {
 
     const notyf = new Notyf();
 
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [authorId, setAuthorId] = useState('');
-    const [authorName, setAuthorName] = useState('');
-    const [dateCreated, setDateCreated] = useState('');
+    const [post, setPost] = useState({});
 
-    useEffect(() => {
+    const fetchPost = () => {
         fetch(`http://localhost:4000/posts/getPost/${postId}`)
         .then(response => response.json())
         .then(data => {
             if(data) {
-                setTitle(data.title);
-                setContent(data.content);
-                setAuthorId(data.authorId);
-                setAuthorName(data.authorName);
-                setDateCreated(data.createdOn);
+                setPost(data);
             } else {
                 navigate('/posts');
             }
         });
+    };
+
+    useEffect(() => {
+        fetchPost();
     }, [postId]);
 
     return(
@@ -44,10 +41,10 @@ export default function PostDetails() {
             <Col className="col-8">
                 <div className="d-flex mb-2">
                     {(user.id !== null) ?
-                        (user.id === authorId) ?
+                        (user.id === post.authorId) ?
                             <>
-                                <Button variant="primary" className="ms-auto">Edit</Button>
-                                <DeleteBlog postId={postId} />
+                                <UpdateBlog post={post} fetchPost={fetchPost} />
+                                <DeleteBlog postId={post._id} />
                             </>
                         :
                             null
@@ -55,17 +52,17 @@ export default function PostDetails() {
                         null
                     }
                     {(user.isAdmin === true) ?
-                        <DeleteBlog postId={postId} />
+                        <DeleteBlog postId={post._id} />
                     :
                         null
                     }
                 </div>
                 <Card bg="dark" className="text-white">
-                    <Card.Header as="h3" className="text-center">{title}</Card.Header>
+                    <Card.Header as="h3" className="text-center">{post.title}</Card.Header>
                     <Card.Body>
-                        <Card.Text className="mb-5">{content}</Card.Text>
-                        <Card.Text>Posted By: {authorName}</Card.Text>
-                        <Card.Text>Posted On: {dateCreated}</Card.Text>
+                        <Card.Text className="mb-5">{post.content}</Card.Text>
+                        <Card.Text>Posted By: {post.authorName}</Card.Text>
+                        <Card.Text>Posted On: {post.createdOn}</Card.Text>
                     </Card.Body>
                 </Card>
             </Col>

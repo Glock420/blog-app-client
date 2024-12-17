@@ -30,9 +30,9 @@ export default function DeleteBlog({ postId }){
             if(data.message === 'Blog post deleted successfully') {
                 notyf.success("Post is now deleted");
 
-                navigate('/posts')
+                navigate('/posts');
             } else {
-                notyf.error("Could not delete");
+                notyf.error("Could not delete post");
             }
         });
     }
