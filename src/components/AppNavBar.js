@@ -11,7 +11,7 @@ export default function AppNavBar() {
 	return(
 		<Navbar bg="dark" expand="lg" data-bs-theme="dark">
 			<Container fluid>
-			    <Navbar.Brand as={Link} to="/">S84 MW</Navbar.Brand>
+			    <Navbar.Brand as={Link} to="/">S86 BlogForge</Navbar.Brand>
 			    <Navbar.Toggle aria-controls="basic-navbar-nav" />
 			    <Navbar.Collapse id="basic-navbar-nav">
 				    <Nav className="ms-auto">
