@@ -73,7 +73,7 @@ export default function Register(){
 					<h1 className = 'mb-5 text-center'>Register</h1>
 
 					<Form.Group className="mb-3" >
-				    	<Form.Label>Email:</Form.Label>
+				    	<Form.Label>Username:</Form.Label>
 				        <Form.Control 
 				        	type="text" 
 				        	placeholder="Enter your username" 
