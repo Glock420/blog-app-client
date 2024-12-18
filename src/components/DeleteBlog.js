@@ -19,7 +19,7 @@ export default function DeleteBlog({ postId }){
     const modalShow = () => setModal(true);
 
     const deletePost = (postId) => {
-        fetch(`http://localhost:4000/posts/deletePost/${postId}`, {
+        fetch(`https://blog-api-yb5u.onrender.com/posts/deletePost/${postId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`

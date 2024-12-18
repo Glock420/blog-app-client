@@ -22,7 +22,7 @@ export default function AddPost({ fetchPosts }){
     const modalShow = () => setModal(true);
 
     const addPost = () => {
-        fetch(`http://localhost:4000/posts/addPost`, {
+        fetch(`https://blog-api-yb5u.onrender.com/posts/addPost`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,

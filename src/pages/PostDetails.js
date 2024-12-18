@@ -21,7 +21,7 @@ export default function PostDetails() {
     const [post, setPost] = useState({});
 
     const fetchPost = () => {
-        fetch(`http://localhost:4000/posts/getPost/${postId}`)
+        fetch(`https://blog-api-yb5u.onrender.com/posts/getPost/${postId}`)
         .then(response => response.json())
         .then(data => {
             if(data) {

@@ -12,7 +12,7 @@ export default function Posts() {
 	const [posts, setPosts] = useState([]);
 
 	const fetchPosts = () => {
-		fetch(`http://localhost:4000/posts/getPosts`)
+		fetch(`https://blog-api-yb5u.onrender.com/posts/getPosts`)
 		.then(response => response.json())
 		.then(data => {
 			if(data.posts) {
